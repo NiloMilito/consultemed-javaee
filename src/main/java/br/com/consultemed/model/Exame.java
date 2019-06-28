@@ -24,4 +24,20 @@ public class Exame {
 	@JoinColumn(name = "exames")
 	private Consulta consulta;
 
+	public String getLaudo() {
+		return laudo;
+	}
+
+	public void setLaudo(String laudo) {
+		this.laudo = laudo;
+	}
+
+	public Consulta getConsulta() {
+		return consulta;
+	}
+
+	public void setConsulta(Consulta consulta) {
+		this.consulta = consulta;
+	}
+
 }

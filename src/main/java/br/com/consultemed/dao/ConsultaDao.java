@@ -1,7 +1,10 @@
 package br.com.consultemed.dao;
 
+import java.util.Date;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
 import br.com.consultemed.facadedao.IConsultaDao;
 import br.com.consultemed.model.Consulta;
@@ -37,8 +40,16 @@ public class ConsultaDao implements IConsultaDao{
 	}
 	
 	@Override
-	public Consulta buscar(Long id) {		
+	public Consulta buscarPorId(Long id) {		
 		return manager.find(Consulta.class, id);
+	}
+
+	@Override
+	public Consulta buscarPorPeriodo(Date inicio, Date fim) {
+		Query query = this.manager.createQuery("SELECT a FROM Consulta a Where a.dataConsulta BETWEEN :inicio AND :fim ");
+		query.setParameter("inicio", inicio);
+		query.setParameter("fim", fim);
+		return (Consulta) query.getSingleResult();
 	}
 
 }

@@ -1,11 +1,12 @@
 package br.com.consultemed.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import br.com.consultemed.utils.DiasAtendimento;
 
 @Table(name="tb_medico")
 @Entity
@@ -14,7 +15,8 @@ public class Medico extends Pessoa {
 	@Column(name="crm", unique=true)
 	private String crm;
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.DETACH)
+    @JoinColumn(name="diasAtendimento_id")
 	private DiasAtendimento diasAtendimento;
 	
 	public Medico() {

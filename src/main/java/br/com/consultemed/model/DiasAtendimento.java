@@ -1,14 +1,11 @@
-package br.com.consultemed.utils;
+package br.com.consultemed.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import br.com.consultemed.model.Medico;
 
 @Table(name="tb_dias_atendimento")
 @Entity
@@ -16,10 +13,7 @@ public class DiasAtendimento {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@OneToOne
-	private Medico medico;
+	private Long id;	
 	
 	@Column(name="segunda")
 	private Boolean segunda;
@@ -46,11 +40,9 @@ public class DiasAtendimento {
 		
 	}
 
-	public DiasAtendimento(Long id, Medico medico, Boolean segunda, Boolean terca, Boolean quarta, Boolean quinta,
+	public DiasAtendimento(Boolean segunda, Boolean terca, Boolean quarta, Boolean quinta,
 			Boolean sexta, Boolean sabado, Boolean domingo) {
-		super();
-		this.id = id;
-		this.medico = medico;
+		super();			
 		this.segunda = segunda;
 		this.terca = terca;
 		this.quarta = quarta;
@@ -66,14 +58,6 @@ public class DiasAtendimento {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Medico getMedico() {
-		return medico;
-	}
-
-	public void setMedico(Medico medico) {
-		this.medico = medico;
 	}
 
 	public Boolean getSegunda() {
@@ -137,7 +121,6 @@ public class DiasAtendimento {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((medico == null) ? 0 : medico.hashCode());
 		result = prime * result + ((domingo == null) ? 0 : domingo.hashCode());
 		result = prime * result + ((segunda == null) ? 0 : segunda.hashCode());
 		result = prime * result + ((terca == null) ? 0 : terca.hashCode());
@@ -161,12 +144,7 @@ public class DiasAtendimento {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
-			return false;
-		if (medico == null) {
-			if (other.medico != null)
-				return false;
-		} else if (!medico.equals(other.medico))
-			return false;
+			return false;		
 		if (domingo == null) {
 			if (other.domingo != null)
 				return false;

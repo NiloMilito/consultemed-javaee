@@ -1,33 +1,113 @@
 package br.com.consultemed.utils;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-import br.com.consultemed.model.Contato;
+import br.com.consultemed.model.Agendamento;
+import br.com.consultemed.model.Consulta;
+import br.com.consultemed.model.DiasAtendimento;
+import br.com.consultemed.model.Endereco;
+import br.com.consultemed.model.Exame;
+import br.com.consultemed.model.Medico;
+import br.com.consultemed.model.Paciente;
+import br.com.consultemed.service.AgendamentoService;
+import br.com.consultemed.service.ConsultaService;
+import br.com.consultemed.service.MedicoService;
+import br.com.consultemed.service.PacienteService;
 
 public class Main {
-	public static void main(String[] args) {
-		EntityManagerFactory factory = JPAUtils.getEntityManagerFactory();
-		EntityManager manager = factory.createEntityManager();
+	public static void main(String[] args) {					
+				
+		Paciente paciente = new Paciente();		
+		paciente.setNome("Danilo");
+		paciente.setCpf("324.234.324-90");
 		
-		System.out.println("Criando o Contato ");
+		Endereco endereco = new Endereco();
+		endereco.setEstado("PB");
+		endereco.setCidade("João Pessoa");
+		endereco.setBairro("Jardim Cidade Universitária");
+		endereco.setRua("Rosa Farias Real");
+		endereco.setNumero("122");
+		paciente.setEndereco(endereco);
 		
-		Contato contato = new Contato();
+		paciente.setFicha(33);
 		
-		contato.setNome("Danilo");
-		contato.setEmail("nilomilito@gmail.com");
-		contato.setTelefone("9 98288071");
-		//contato.setId(null);
 		
-		System.out.println("Contato criado ");
+		System.out.println("Paciente criado ");
 		
-		manager.getTransaction().begin();
-		manager.persist(contato);
-		manager.getTransaction().commit();
-		manager.close();
+		PacienteService pservice = new PacienteService();		
+		pservice.salvar(paciente);	
+
+		System.out.println("Paciente "+paciente.getNome() + " cadastrado com sucesso !");
 		
-		System.out.println("Contato "+contato.getNome() + " cadastrado com sucesso !");
 		
+		
+		
+		Medico medico = new Medico();
+		
+		medico.setNome("Racho Crolde");
+		medico.setCpf("456.890.897-87");
+		medico.setCrm("3432-3423-89");
+		
+		DiasAtendimento diasAtendimento = new DiasAtendimento();
+		
+		diasAtendimento.setSegunda(false);
+		diasAtendimento.setTerca(true);
+		diasAtendimento.setQuarta(false);
+		diasAtendimento.setQuinta(true);
+		diasAtendimento.setSexta(true);
+		diasAtendimento.setSabado(false);
+		diasAtendimento.setDomingo(false);
+		
+		medico.setDiasAtendimento(diasAtendimento);
+		
+		System.out.println("Médico criado ");
+		
+		MedicoService mservice = new MedicoService();		
+		mservice.salvar(medico);	
+		
+		System.out.println("Médico "+medico.getNome() + " cadastrado com sucesso !");
+
+		
+		
+		
+		Consulta consulta = new Consulta();
+		
+		consulta.setDataConsulta(new Date());
+		consulta.setMotivo("Dores Abdominais");
+		
+		Exame exame = new Exame();
+		exame.setLaudo("Negativo");
+		exame.setConsulta(consulta);
+		
+		List<Exame> exames = new ArrayList<>();
+		exames.add(exame);
+		
+		consulta.setExames(exames);
+		
+		System.out.println("Consulta criada ");
+		ConsultaService cservice = new ConsultaService();
+		cservice.salvar(consulta);
+		System.out.println("Consulta "+consulta.getMotivo()+ " cadastrado com sucesso !");
+		
+		
+		Agendamento agendamento = new Agendamento();
+		
+		ConsultaService cService = new ConsultaService();
+		Consulta consult = (Consulta) cService.buscar(1L);
+		agendamento.setConsulta(consult);
+				
+		agendamento.setPaciente(paciente);
+		agendamento.setDataAgendamento(new Date());
+		
+		System.out.println("Agendamento criado ");
+		
+		AgendamentoService aservice = new AgendamentoService();
+		aservice.alterar(agendamento);
+		System.out.println("Agendamento "+agendamento.getConsulta().getMotivo() + " cadastrado com sucesso !");
+
+
 	}
 
 }

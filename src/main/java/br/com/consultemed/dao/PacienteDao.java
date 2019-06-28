@@ -2,6 +2,7 @@ package br.com.consultemed.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
 import br.com.consultemed.facadedao.IPacienteDao;
 import br.com.consultemed.model.Paciente;
@@ -22,20 +23,37 @@ public class PacienteDao implements IPacienteDao{
 
 	@Override
 	public void alterar(Paciente paciente) {
-		// TODO Auto-generated method stub
+		this.manager.getTransaction().begin();
+		this.manager.merge(paciente);
+		this.manager.getTransaction().commit();
+		this.manager.close();
 		
 	}
 
 	@Override
-	public void remover(Paciente paciente) {
+	public void remover(Paciente paciente) {	
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public Paciente buscarPorId(Long id) {	
+		this.manager.getTransaction().begin();
+		return this.manager.find(Paciente.class, id);
 		
 	}
 
 	@Override
-	public Paciente buscar(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Paciente buscarPorNome(String nome) {
+		Query query = this.manager.createQuery("SELECT a FROM Paciente a Where a.nome LIKE :nome ");
+		query.setParameter("nome", nome);	
+		return (Paciente) query.getSingleResult();
+	}
+
+	@Override
+	public Paciente buscarPorCpf(String cpf) {
+		Query query = this.manager.createQuery("SELECT a FROM Paciente a Where a.cpf LIKE :cpf ");
+		query.setParameter("cpf", cpf);	
+		return (Paciente) query.getSingleResult();
 	}
 
 }

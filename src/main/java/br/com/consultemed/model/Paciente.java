@@ -15,4 +15,20 @@ public class Paciente extends Pessoa{
 	@Embedded
 	private Endereco endereco;
 
+	public Integer getFicha() {
+		return ficha;
+	}
+
+	public void setFicha(Integer ficha) {
+		this.ficha = ficha;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
 }

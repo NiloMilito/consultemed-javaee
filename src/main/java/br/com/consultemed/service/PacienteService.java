@@ -15,21 +15,28 @@ public class PacienteService implements IPaciente{
 	}
 
 	@Override
-	public <T> void alterar(T object) {
-		// TODO Auto-generated method stub
-		
+	public <T> void alterar(T object) {		
+		this.pacienteDao.alterar((Paciente) object);
 	}
 
 	@Override
 	public <T> void remover(T object) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub		
 	}
 
 	@Override
-	public <T> T buscar(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Object buscar(Long id) {
+		return this.pacienteDao.buscarPorId(id);
+	}
+
+	@Override
+	public Paciente buscarPorNome(String nome) {		
+		return this.pacienteDao.buscarPorNome(nome);
+	}
+
+	@Override
+	public Paciente buscarPorCpf(String cpf) {		
+		return this.pacienteDao.buscarPorCpf(cpf);
 	}
 
 }

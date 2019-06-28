@@ -8,6 +8,6 @@ public interface IGeneric {
 	
 	public <T> void remover (T object);
 	
-	public <T> T buscar(Long id);
+	public Object buscar(Long id);
 
 }

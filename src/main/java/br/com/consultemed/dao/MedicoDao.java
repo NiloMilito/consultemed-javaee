@@ -22,8 +22,10 @@ public class MedicoDao implements IMedicoDao{
 
 	@Override
 	public void alterar(Medico medico) {
-		// TODO Auto-generated method stub
-		
+		this.manager.getTransaction().begin();
+		this.manager.merge(medico);
+		this.manager.getTransaction().commit();
+		this.manager.close();
 	}
 
 	@Override
@@ -33,7 +35,7 @@ public class MedicoDao implements IMedicoDao{
 	}
 
 	@Override
-	public Medico buscar(Long id) {
+	public Medico buscarPorId(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

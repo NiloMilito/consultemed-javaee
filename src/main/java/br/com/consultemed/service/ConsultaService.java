@@ -1,5 +1,7 @@
 package br.com.consultemed.service;
 
+import java.util.Date;
+
 import br.com.consultemed.dao.ConsultaDao;
 import br.com.consultemed.facade.IConsulta;
 import br.com.consultemed.facadedao.IConsultaDao;
@@ -22,14 +24,22 @@ public class ConsultaService implements IConsulta{
 
 	@Override
 	public <T> void remover(T object) {
-		// TODO Auto-generated method stub
+		this.consultaDao.remover((Consulta) object);
 		
 	}
 
 	@Override
-	public <T> T buscar(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Object buscar(Long id) {		
+		return this.consultaDao.buscarPorId(id);
+	}
+	
+	public Consulta buscarPorPeriodo(Date inicio, Date fim) {
+		return this.consultaDao.buscarPorPeriodo(inicio, fim);
+	}
+
+	@Override
+	public void cancelarConsulta(Consulta consulta) {
+		this.remover(consulta);	
 	}
 
 }
