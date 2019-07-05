@@ -25,8 +25,8 @@ public class Main {
 		
 		Endereco endereco = new Endereco();
 		endereco.setEstado("PB");
-		endereco.setCidade("João Pessoa");
-		endereco.setBairro("Jardim Cidade Universitária");
+		endereco.setCidade("Joï¿½o Pessoa");
+		endereco.setBairro("Jardim Cidade Universitï¿½ria");
 		endereco.setRua("Rosa Farias Real");
 		endereco.setNumero("122");
 		paciente.setEndereco(endereco);
@@ -62,12 +62,12 @@ public class Main {
 		
 		medico.setDiasAtendimento(diasAtendimento);
 		
-		System.out.println("Médico criado ");
+		System.out.println("Mï¿½dico criado ");
 		
 		MedicoService mservice = new MedicoService();		
 		mservice.salvar(medico);	
 		
-		System.out.println("Médico "+medico.getNome() + " cadastrado com sucesso !");
+		System.out.println("Mï¿½dico "+medico.getNome() + " cadastrado com sucesso !");
 
 		
 		
