@@ -1,44 +1,43 @@
-package br.com.consultemed.dao;
+package br.com.consultemed.dao.impl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
-import br.com.consultemed.facadedao.IDiasAtendimentoDao;
-import br.com.consultemed.model.DiasAtendimento;
+import br.com.consultemed.dao.IMedicoDao;
+import br.com.consultemed.model.Medico;
 import br.com.consultemed.utils.JPAUtils;
 
-public class DiasAtendimentoDao implements IDiasAtendimentoDao{
+public class MedicoDao implements IMedicoDao{
 	
 	private EntityManagerFactory factory = JPAUtils.getEntityManagerFactory();
 	private EntityManager manager = factory.createEntityManager();
 
 	@Override
-	public void salvar(DiasAtendimento diasAtendimento) {
+	public void salvar(Medico medico) {
 		this.manager.getTransaction().begin();
-		this.manager.persist(diasAtendimento);
+		this.manager.persist(medico);
 		this.manager.getTransaction().commit();
-		this.manager.close();	
+		this.manager.close();		
 	}
 
 	@Override
-	public void alterar(DiasAtendimento diasAtendimento) {
+	public void alterar(Medico medico) {
 		this.manager.getTransaction().begin();
-		this.manager.merge(diasAtendimento);
+		this.manager.merge(medico);
 		this.manager.getTransaction().commit();
-		this.manager.close();	
+		this.manager.close();
 	}
 
 	@Override
-	public void remover(DiasAtendimento diasAtendimento) {
+	public void remover(Medico medico) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public DiasAtendimento buscarPorId(Long id) {
+	public Medico buscar(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 }

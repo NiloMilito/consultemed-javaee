@@ -1,4 +1,4 @@
-package br.com.consultemed.dao;
+package br.com.consultemed.dao.impl;
 
 import java.util.Date;
 
@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
-import br.com.consultemed.facadedao.IAgendamentoDao;
+import br.com.consultemed.dao.IAgendamentoDao;
 import br.com.consultemed.model.Agendamento;
 import br.com.consultemed.utils.JPAUtils;
 

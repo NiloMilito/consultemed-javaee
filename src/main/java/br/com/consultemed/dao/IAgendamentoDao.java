@@ -1,4 +1,4 @@
-package br.com.consultemed.facadedao;
+package br.com.consultemed.dao;
 
 import java.util.Date;
 

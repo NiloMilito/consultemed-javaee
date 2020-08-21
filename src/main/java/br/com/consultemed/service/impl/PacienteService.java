@@ -1,32 +1,32 @@
-package br.com.consultemed.service;
+package br.com.consultemed.service.impl;
 
-import br.com.consultemed.dao.PacienteDao;
-import br.com.consultemed.facade.IPaciente;
-import br.com.consultemed.facadedao.IPacienteDao;
+import br.com.consultemed.dao.IPacienteDao;
+import br.com.consultemed.dao.impl.PacienteDao;
 import br.com.consultemed.model.Paciente;
+import br.com.consultemed.service.IPaciente;
 
 public class PacienteService implements IPaciente{
 	
 	private IPacienteDao pacienteDao = new PacienteDao();
 
 	@Override
-	public <T> void salvar(T object) {
+	public void salvar(Paciente object) {
 		this.pacienteDao.salvar((Paciente) object);		
 	}
 
 	@Override
-	public <T> void alterar(T object) {		
-		this.pacienteDao.alterar((Paciente) object);
+	public void alterar(Paciente object) {		
+		this.pacienteDao.alterar(object);
 	}
 
 	@Override
-	public <T> void remover(T object) {
+	public void remover(Paciente object) {
 		// TODO Auto-generated method stub		
 	}
 
 	@Override
-	public Object buscar(Long id) {
-		return this.pacienteDao.buscarPorId(id);
+	public Paciente buscar(Long id) {
+		return this.pacienteDao.buscar(id);
 	}
 
 	@Override

@@ -11,10 +11,10 @@ import br.com.consultemed.model.Endereco;
 import br.com.consultemed.model.Exame;
 import br.com.consultemed.model.Medico;
 import br.com.consultemed.model.Paciente;
-import br.com.consultemed.service.AgendamentoService;
-import br.com.consultemed.service.ConsultaService;
-import br.com.consultemed.service.MedicoService;
-import br.com.consultemed.service.PacienteService;
+import br.com.consultemed.service.impl.AgendamentoService;
+import br.com.consultemed.service.impl.ConsultaService;
+import br.com.consultemed.service.impl.MedicoService;
+import br.com.consultemed.service.impl.PacienteService;
 
 public class Main {
 	public static void main(String[] args) {					

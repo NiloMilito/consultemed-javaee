@@ -1,10 +1,10 @@
-package br.com.consultemed.dao;
+package br.com.consultemed.dao.impl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
-import br.com.consultemed.facadedao.IPacienteDao;
+import br.com.consultemed.dao.IPacienteDao;
 import br.com.consultemed.model.Paciente;
 import br.com.consultemed.utils.JPAUtils;
 
@@ -36,7 +36,7 @@ public class PacienteDao implements IPacienteDao{
 	}
 
 	@Override
-	public Paciente buscarPorId(Long id) {	
+	public Paciente buscar(Long id) {	
 		this.manager.getTransaction().begin();
 		return this.manager.find(Paciente.class, id);
 		

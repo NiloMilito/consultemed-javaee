@@ -1,8 +1,8 @@
-package br.com.consultemed.facade;
+package br.com.consultemed.service;
 
 import br.com.consultemed.model.Consulta;
 
-public interface IConsulta extends IGeneric{
+public interface IConsulta extends IGeneric<Consulta>{
 	
 	public void cancelarConsulta(Consulta consulta);
 
